@@ -5,6 +5,7 @@ import { useProductStore } from '@/stores/products'
 import { userAuthStore } from '@/stores/auth'
 import { useRouter } from 'vue-router'
 import { storeToRefs } from 'pinia'
+import StoreButton from '@/components/StoreButton.vue'
 
 const auth = userAuthStore()
 const router = useRouter()
@@ -29,7 +30,7 @@ function logout() {
     <nav v-if="auth.isAuthenticated">
       <RouterLink to="/catalog">Catalog</RouterLink>
       <RouterLink to="/cart">Cart {{ cartItemCount }}</RouterLink>
-      <button @click="logout">Выйти</button>
+      <StoreButton @click="logout">Выйти</StoreButton>
     </nav>
   </header>
   <RouterView />

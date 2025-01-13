@@ -8,11 +8,11 @@
                     <h3>{{ item.title }}</h3>
                     <p>{{ item.price }} eur.</p>
                     <div>
-                        <button @click="updateQuantity(item.id, item.quantity - 1)">-</button>
+                        <StoreButton @click="updateQuantity(item.id, item.quantity - 1)">-</StoreButton>
                         {{ item.quantity }}
-                        <button @click="updateQuantity(item.id, item.quantity + 1)">+</button>
+                        <StoreButton @click="updateQuantity(item.id, item.quantity + 1)">+</StoreButton>
                     </div>
-                    <button @click="removeItem(item.id)">Удалить</button>
+                    <StoreButton @click="removeItem(item.id)">Удалить</StoreButton>
                 </article>
             </li>
         </ul>
@@ -25,6 +25,7 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { useProductStore } from '@/stores/products'
+import StoreButton from '@/components/StoreButton.vue';
 
 const store = useProductStore()
 const { cart, cartTotal } = storeToRefs(store)

@@ -8,7 +8,7 @@
                 <img :src="product.image" />
                 <h3>{{ product.title }}</h3>
                 <p>{{ product.price }} eur.</p>
-                <button @click="addToCart(product)">Добавить в корзину</button>
+                <StoreButton @click="addToCart(product)">Добавить в корзину</StoreButton>
             </article>
         </li>
     </ul>
@@ -18,11 +18,12 @@
 import { onMounted } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useProductStore } from '@/stores/products'
+import StoreButton from '@/components/StoreButton.vue';
 
 // Инициализация store
 const store = useProductStore()
 
-// Получаем реаткивные свойства из store
+// Получаем реактивные свойства из store
 const { products, loading, error } = storeToRefs(store)
 
 // Методы для работы с товароми
