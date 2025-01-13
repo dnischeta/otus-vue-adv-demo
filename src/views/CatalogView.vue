@@ -4,12 +4,13 @@
     <div v-else-if="error">{{ error }}</div>
     <ul v-else>
         <li v-for="product in products" :key="product.id">
-            <article>
-                <img :src="product.image" />
-                <h3>{{ product.title }}</h3>
-                <p>{{ product.price }} eur.</p>
-                <StoreButton @click="addToCart(product)">Добавить в корзину</StoreButton>
-            </article>
+            <StoreCard :cover="product.image">
+                <template #title>{{ product.title }}</template>
+                {{ product.price }} eur.
+                <template #actions>
+                    <StoreButton @click="addToCart(product)">Добавить в корзину</StoreButton>
+                </template>
+            </StoreCard>
         </li>
     </ul>
 </template>
@@ -19,6 +20,7 @@ import { onMounted } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useProductStore } from '@/stores/products'
 import StoreButton from '@/components/StoreButton.vue';
+import StoreCard from '@/components/StoreCard.vue';
 
 // Инициализация store
 const store = useProductStore()
@@ -40,17 +42,5 @@ ul {
     display: grid;
     gap: 1rem;
     grid-template-columns: repeat(auto-fill, 200px);
-}
-
-article {
-    display: flex;
-    flex-direction: column;
-    padding: 1rem;
-    border-radius: 12px;
-    border: 1px solid var(--color-border);
-}
-
-article img {
-    border-radius: 8px;
 }
 </style>
