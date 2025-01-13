@@ -19,3 +19,14 @@ a,
     background-color: hsla(160, 100%, 37%, 0.2);
   }
 }
+
+/* Transitions */
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 150ms linear;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
