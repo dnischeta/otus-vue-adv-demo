@@ -3,15 +3,20 @@ import { ref } from 'vue'
 
 export const userAuthStore = defineStore('auth', () => {
     const isAuthenticated = ref(false)
+    const error = ref(null)
 
-    function login() {
-        fetch('https://fakestoreapi.com/auth/login', {
-            method: "POST", body: JSON.stringify({
-                username: 'johsnd',
-                password: 'm38rmF$',
-            })
+    async function login(credentials) {
+        error.value = null
+        
+        const response = await fetch('https://fakestoreapi.com/auth/login', {
+            method: "POST", body: JSON.stringify(credentials)
         })
-        isAuthenticated.value = true
+
+        if (!response.ok) {
+            error.value = response.statusText
+        }
+
+        return isAuthenticated.value = response.ok
     }
 
     function logout() {
@@ -20,6 +25,7 @@ export const userAuthStore = defineStore('auth', () => {
 
     return {
         isAuthenticated,
+        error,
         login,
         logout
     }

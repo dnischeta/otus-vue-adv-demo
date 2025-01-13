@@ -9,7 +9,11 @@ const handlers = [
 
         const body = await request.json()
 
-        if (body.username !== 'johnd' || body.password !== 'm38rmF') {
+        await new Promise(r => {
+            setTimeout(r, 500)
+        })
+
+        if (body.username !== 'johnd' || body.password !== 'm38rmF$') {
             return HttpResponse.json({ error: "Invalid credentials" }, { status: 400 })
         }
 
