@@ -19,6 +19,7 @@
                 </StoreCard>
             </li>
         </ul>
+        <hr />
         <div>
             <p>Итого: {{ cartTotal }}</p>
         </div>

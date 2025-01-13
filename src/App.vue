@@ -35,7 +35,12 @@ function logout() {
       </nav>
     </Transition>
   </header>
-  <RouterView />
+  <RouterView v-slot="{ Component }">
+    <!-- Demonstrate modes using DevTools Animations -->
+    <Transition mode="out-in">
+      <component :is="Component" />
+    </Transition>
+  </RouterView>
 </template>
 
 <style scoped>

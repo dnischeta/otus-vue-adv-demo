@@ -1,18 +1,20 @@
 <template>
-    <h2>Каталог товаров</h2>
-    <div v-if="loading">Загрузка...</div>
-    <div v-else-if="error">{{ error }}</div>
-    <ul v-else>
-        <li v-for="product in products" :key="product.id">
-            <StoreCard :cover="product.image">
-                <template #title>{{ product.title }}</template>
-                {{ product.price }} eur.
-                <template #actions>
-                    <StoreButton @click="addToCart(product)">Добавить в корзину</StoreButton>
-                </template>
-            </StoreCard>
-        </li>
-    </ul>
+    <div>
+        <h2>Каталог товаров</h2>
+        <div v-if="loading">Загрузка...</div>
+        <div v-else-if="error">{{ error }}</div>
+        <ul v-else>
+            <li v-for="product in products" :key="product.id">
+                <StoreCard :cover="product.image">
+                    <template #title>{{ product.title }}</template>
+                    {{ product.price }} eur.
+                    <template #actions>
+                        <StoreButton @click="addToCart(product)">Добавить в корзину</StoreButton>
+                    </template>
+                </StoreCard>
+            </li>
+        </ul>
+    </div>
 </template>
 
 <script setup>

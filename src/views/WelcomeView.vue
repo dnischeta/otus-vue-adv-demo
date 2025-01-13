@@ -1,23 +1,25 @@
 <template>
-    <h2>Добро пожаловать на сайт</h2>
-    <StoreCard>
-        <form @submit.prevent="login">
-            <label>
-                Имя пользователя:
-                <input v-model="form.username" type="text" required />
-            </label>
-            <label>
-                Пароль:
-                <input v-model="form.password" type="password" required />
-            </label>
-            <div style="height: 50px;">
-                <Transition>
-                    <div v-if="auth.error" class="error">Произошла ошибка: {{ auth.error }}</div>
-                </Transition>
-            </div>
-            <StoreButton>Войти</StoreButton>
-        </form>
-    </StoreCard>
+    <div>
+        <h2>Добро пожаловать на сайт</h2>
+        <StoreCard>
+            <form @submit.prevent="login">
+                <label>
+                    Имя пользователя:
+                    <input v-model="form.username" type="text" required />
+                </label>
+                <label>
+                    Пароль:
+                    <input v-model="form.password" type="password" required />
+                </label>
+                <div style="height: 50px;">
+                    <Transition>
+                        <div v-if="auth.error" class="error">Произошла ошибка: {{ auth.error }}</div>
+                    </Transition>
+                </div>
+                <StoreButton>Войти</StoreButton>
+            </form>
+        </StoreCard>
+    </div>
 </template>
 
 <script setup>
