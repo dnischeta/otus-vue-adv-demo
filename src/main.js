@@ -11,4 +11,14 @@ const app = createApp(App)
 app.use(createPinia())
 app.use(router)
 
-app.mount('#app')
+enableMocking().then(() => {
+    app.mount('#app')
+})
+
+async function enableMocking() {
+    if (process.env.NODE_ENV !== 'development') {
+        return
+    }
+    const { worker } = await import('./mocks/index.js')
+    return worker.start()
+}

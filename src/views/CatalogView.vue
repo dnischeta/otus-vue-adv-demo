@@ -1,16 +1,17 @@
 <template>
-    <div>
-        <h2>Каталог товаров</h2>
-        <div v-if="loading">Загрузка...</div>
-        <div v-else-if="error">{{ error }}</div>
-        <div v-else>
-            <div v-for="product in products" :key="product.id">
+    <h2>Каталог товаров</h2>
+    <div v-if="loading">Загрузка...</div>
+    <div v-else-if="error">{{ error }}</div>
+    <ul v-else>
+        <li v-for="product in products" :key="product.id">
+            <article>
+                <img :src="product.image" />
                 <h3>{{ product.title }}</h3>
-                <p>{{ product.price }}</p>
+                <p>{{ product.price }} eur.</p>
                 <button @click="addToCart(product)">Добавить в корзину</button>
-            </div>
-        </div>
-    </div>
+            </article>
+        </li>
+    </ul>
 </template>
 
 <script setup>
@@ -33,4 +34,22 @@ onMounted(() => {
 
 </script>
 
-<style scoped></style>
+<style scoped>
+ul {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, 200px);
+}
+
+article {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    border-radius: 12px;
+    border: 1px solid var(--color-border);
+}
+
+article img {
+    border-radius: 8px;
+}
+</style>

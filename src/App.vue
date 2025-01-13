@@ -1,5 +1,6 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
+import logo from '@/assets/logo.svg'
 import { useProductStore } from '@/stores/products'
 import { userAuthStore } from '@/stores/auth'
 import { useRouter } from 'vue-router'
@@ -18,12 +19,19 @@ function logout() {
 </script>
 
 <template>
-  <nav v-if="auth.isAuthenticated">
-    <RouterLink to="/catalog">Catalog</RouterLink>
-    <RouterLink to="/cart">Cart {{ cartItemCount }}</RouterLink>
-    <button @click="logout">Выйти</button>
-  </nav>
-
+  <header>
+    <h1>
+      <RouterLink to="/">
+        <img class="logo" :src="logo" />
+        Awesome Store
+      </RouterLink>
+    </h1>
+    <nav v-if="auth.isAuthenticated">
+      <RouterLink to="/catalog">Catalog</RouterLink>
+      <RouterLink to="/cart">Cart {{ cartItemCount }}</RouterLink>
+      <button @click="logout">Выйти</button>
+    </nav>
+  </header>
   <RouterView />
 </template>
 
@@ -31,18 +39,21 @@ function logout() {
 header {
   line-height: 1.5;
   max-height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .logo {
+  width: 32px;
+  height: 32px;
   display: block;
-  margin: 0 auto 2rem;
+  margin-right: 0.5rem;
 }
 
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
+h1 a {
+  display: flex;
+  align-items: center;
 }
 
 nav a.router-link-exact-active {
@@ -61,32 +72,5 @@ nav a {
 
 nav a:first-of-type {
   border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
 }
 </style>
