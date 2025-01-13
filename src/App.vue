@@ -27,11 +27,13 @@ function logout() {
         Awesome Store
       </RouterLink>
     </h1>
-    <nav v-if="auth.isAuthenticated">
-      <RouterLink to="/catalog">Catalog</RouterLink>
-      <RouterLink to="/cart">Cart {{ cartItemCount }}</RouterLink>
-      <StoreButton @click="logout">Выйти</StoreButton>
-    </nav>
+    <Transition name="slide">
+      <nav v-if="auth.isAuthenticated">
+        <RouterLink to="/catalog">Catalog</RouterLink>
+        <RouterLink to="/cart">Cart {{ cartItemCount }}</RouterLink>
+        <StoreButton @click="logout">Выйти</StoreButton>
+      </nav>
+    </Transition>
   </header>
   <RouterView />
 </template>

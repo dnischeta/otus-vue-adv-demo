@@ -20,7 +20,11 @@ a,
   }
 }
 
-/* Transitions */
+/*
+/* Transitions
+*/
+
+/* Default fade transition */
 .v-enter-active,
 .v-leave-active {
   transition: opacity 150ms linear;
@@ -30,3 +34,16 @@ a,
 .v-leave-to {
   opacity: 0;
 }
+/* End: Default fade transition */
+
+/* Slide transition */
+.slide-enter-active,
+.slide-leave-active {
+  transition: transform 150ms linear;
+}
+
+.slide-enter-from,
+.slide-leave-to {
+  transform: translateX(100px);
+}
+/* End: Slide transition */
