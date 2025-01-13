@@ -47,3 +47,16 @@ a,
   transform: translateX(100px);
 }
 /* End: Slide transition */
+
+/* List transition */
+.list-enter-active,
+.list-leave-active {
+  transition: transform 150ms linear, opacity 150ms linear;
+}
+
+.list-enter-from,
+.list-leave-to {
+  transform: translateX(50%);
+  opacity: 0;
+}
+/* End: List transition */
