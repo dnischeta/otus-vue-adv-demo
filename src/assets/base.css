@@ -96,3 +96,7 @@ ul, ol {
   padding: 0;
   list-style: none;
 }
+
+ul li, ol li {
+  width: 100%;
+}

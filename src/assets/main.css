@@ -49,9 +49,14 @@ a,
 /* End: Slide transition */
 
 /* List transition */
+.list-move,
 .list-enter-active,
 .list-leave-active {
-  transition: transform 150ms linear, opacity 150ms linear;
+  transition: transform 150ms linear, opacity 50ms linear;
+}
+
+.list-leave-active {
+  position: absolute;
 }
 
 .list-enter-from,
