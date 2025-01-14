@@ -1,7 +1,7 @@
 <template>
     <div>
-        <h2>Каталог товаров</h2>
-        <div v-if="loading">Загрузка...</div>
+        <h2>{{ $t('catalog') }}</h2>
+        <div v-if="loading">{{ $t('loading') }}</div>
         <div v-else-if="error">{{ error }}</div>
         <ul v-else>
             <li v-for="product in products" :key="product.id">
@@ -9,7 +9,7 @@
                     <template #title>{{ product.title }}</template>
                     {{ product.price }} eur.
                     <template #actions>
-                        <StoreButton @click="addToCart(product)">Добавить в корзину</StoreButton>
+                        <StoreButton @click="addToCart(product)">{{ $t('add-to-cart') }}</StoreButton>
                     </template>
                 </StoreCard>
             </li>

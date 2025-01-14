@@ -6,6 +6,7 @@ import { userAuthStore } from '@/stores/auth'
 import { useRouter } from 'vue-router'
 import { storeToRefs } from 'pinia'
 import StoreButton from '@/components/StoreButton.vue'
+import StoreLocaleSwitch from '@/components/StoreLocaleSwitch.vue'
 
 const auth = userAuthStore()
 const router = useRouter()
@@ -27,11 +28,12 @@ function logout() {
         Awesome Store
       </RouterLink>
     </h1>
+    <StoreLocaleSwitch />
     <Transition name="slide">
       <nav v-if="auth.isAuthenticated">
-        <RouterLink to="/catalog">Catalog</RouterLink>
-        <RouterLink to="/cart">Cart {{ cartItemCount }}</RouterLink>
-        <StoreButton @click="logout">Выйти</StoreButton>
+        <RouterLink to="/catalog">{{ $t('catalog') }}</RouterLink>
+        <RouterLink to="/cart">{{ $t('cart') }} {{ cartItemCount }}</RouterLink>
+        <StoreButton @click="logout">{{ $t('logout') }}</StoreButton>
       </nav>
     </Transition>
   </header>

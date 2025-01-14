@@ -1,22 +1,22 @@
 <template>
     <div>
-        <h2>Добро пожаловать на сайт</h2>
+        <h2>{{ $t('welcome') }}</h2>
         <StoreCard>
             <form @submit.prevent="login">
                 <label>
-                    Имя пользователя:
+                    {{ $t('username') }}:
                     <input v-model="form.username" type="text" required />
                 </label>
                 <label>
-                    Пароль:
+                    {{ $t('password') }}:
                     <input v-model="form.password" type="password" required />
                 </label>
                 <div style="height: 50px;">
                     <Transition>
-                        <div v-if="auth.error" class="error">Произошла ошибка: {{ auth.error }}</div>
+                        <div v-if="auth.error" class="error">{{ $t('error') }} {{ auth.error }}</div>
                     </Transition>
                 </div>
-                <StoreButton>Войти</StoreButton>
+                <StoreButton>{{ $t('login') }}</StoreButton>
             </form>
         </StoreCard>
     </div>

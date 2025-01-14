@@ -1,7 +1,7 @@
 <template>
     <div>
-        <h2>Корзина</h2>
-        <div v-if="cart.length === 0">Корзина пуста</div>
+        <h2>{{ $t('cart') }}</h2>
+        <div v-if="cart.length === 0">{{ $t('cart-is-empty') }}</div>
         <TransitionGroup v-else tag="ul" name="list">
             <li v-for="item in cart" :key="item.id">
                 <StoreCard :cover="item.image" row>
@@ -13,14 +13,14 @@
                             {{ item.quantity }}
                             <StoreButton @click="updateQuantity(item.id, item.quantity + 1)">+</StoreButton>
                         </div>
-                        <StoreButton @click="removeItem(item.id)">Удалить</StoreButton>
+                        <StoreButton @click="removeItem(item.id)">{{ $t('delete') }}</StoreButton>
                     </template>
                 </StoreCard>
             </li>
         </TransitionGroup>
         <hr />
         <div>
-            <p>Итого: {{ cartTotal }}</p>
+            <p>{{ $t('total') }}: {{ cartTotal }}</p>
         </div>
     </div>
 </template>
