@@ -5,6 +5,8 @@ import { useProductStore } from '@/stores/products'
 import { userAuthStore } from '@/stores/auth'
 import { useRouter } from 'vue-router'
 import { storeToRefs } from 'pinia'
+import StoreButton from '@/components/StoreButton.vue'
+import StoreLocaleSwitch from '@/components/StoreLocaleSwitch.vue'
 
 const auth = userAuthStore()
 const router = useRouter()
@@ -26,13 +28,21 @@ function logout() {
         Awesome Store
       </RouterLink>
     </h1>
-    <nav v-if="auth.isAuthenticated">
-      <RouterLink to="/catalog">Catalog</RouterLink>
-      <RouterLink to="/cart">Cart {{ cartItemCount }}</RouterLink>
-      <button @click="logout">Выйти</button>
-    </nav>
+    <StoreLocaleSwitch />
+    <Transition name="slide">
+      <nav v-if="auth.isAuthenticated">
+        <RouterLink to="/catalog">{{ $t('catalog') }}</RouterLink>
+        <RouterLink to="/cart">{{ $t('cart') }} {{ cartItemCount }}</RouterLink>
+        <StoreButton @click="logout">{{ $t('logout') }}</StoreButton>
+      </nav>
+    </Transition>
   </header>
-  <RouterView />
+  <RouterView v-slot="{ Component }">
+    <!-- Demonstrate modes using DevTools Animations -->
+    <Transition mode="out-in">
+      <component :is="Component" />
+    </Transition>
+  </RouterView>
 </template>
 
 <style scoped>

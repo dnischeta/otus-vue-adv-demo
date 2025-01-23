@@ -9,7 +9,7 @@
 a,
 .green {
   text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
+  color: var(--color-accent, hsla(160, 100%, 37%, 1));
   transition: 0.4s;
   padding: 3px;
 }
@@ -19,3 +19,49 @@ a,
     background-color: hsla(160, 100%, 37%, 0.2);
   }
 }
+
+/*
+/* Transitions
+*/
+
+/* Default fade transition */
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 150ms linear;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
+/* End: Default fade transition */
+
+/* Slide transition */
+.slide-enter-active,
+.slide-leave-active {
+  transition: transform 150ms linear;
+}
+
+.slide-enter-from,
+.slide-leave-to {
+  transform: translateX(100px);
+}
+/* End: Slide transition */
+
+/* List transition */
+.list-move,
+.list-enter-active,
+.list-leave-active {
+  transition: transform 150ms linear, opacity 50ms linear;
+}
+
+.list-leave-active {
+  position: absolute;
+}
+
+.list-enter-from,
+.list-leave-to {
+  transform: translateX(50%);
+  opacity: 0;
+}
+/* End: List transition */

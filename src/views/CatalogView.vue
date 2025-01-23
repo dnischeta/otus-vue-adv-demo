@@ -1,28 +1,33 @@
 <template>
-    <h2>Каталог товаров</h2>
-    <div v-if="loading">Загрузка...</div>
-    <div v-else-if="error">{{ error }}</div>
-    <ul v-else>
-        <li v-for="product in products" :key="product.id">
-            <article>
-                <img :src="product.image" />
-                <h3>{{ product.title }}</h3>
-                <p>{{ product.price }} eur.</p>
-                <button @click="addToCart(product)">Добавить в корзину</button>
-            </article>
-        </li>
-    </ul>
+    <div>
+        <h2>{{ $t('catalog') }}</h2>
+        <div v-if="loading">{{ $t('loading') }}</div>
+        <div v-else-if="error">{{ error }}</div>
+        <ul v-else>
+            <li v-for="product in products" :key="product.id">
+                <StoreCard :cover="product.image">
+                    <template #title>{{ product.title }}</template>
+                    {{ product.price }} eur.
+                    <template #actions>
+                        <StoreButton @click="addToCart(product)">{{ $t('add-to-cart') }}</StoreButton>
+                    </template>
+                </StoreCard>
+            </li>
+        </ul>
+    </div>
 </template>
 
 <script setup>
 import { onMounted } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useProductStore } from '@/stores/products'
+import StoreButton from '@/components/StoreButton.vue';
+import StoreCard from '@/components/StoreCard.vue';
 
 // Инициализация store
 const store = useProductStore()
 
-// Получаем реаткивные свойства из store
+// Получаем реактивные свойства из store
 const { products, loading, error } = storeToRefs(store)
 
 // Методы для работы с товароми
@@ -39,17 +44,5 @@ ul {
     display: grid;
     gap: 1rem;
     grid-template-columns: repeat(auto-fill, 200px);
-}
-
-article {
-    display: flex;
-    flex-direction: column;
-    padding: 1rem;
-    border-radius: 12px;
-    border: 1px solid var(--color-border);
-}
-
-article img {
-    border-radius: 8px;
 }
 </style>

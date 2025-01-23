@@ -19,6 +19,8 @@
   --vt-c-text-light-2: rgba(60, 60, 60, 0.66);
   --vt-c-text-dark-1: var(--vt-c-white);
   --vt-c-text-dark-2: rgba(235, 235, 235, 0.64);
+
+  --color-accent: hsla(160, 100%, 37%, 1);
 }
 
 /* semantic color variables for this project */
@@ -93,4 +95,8 @@ ul, ol {
   margin: 0;
   padding: 0;
   list-style: none;
+}
+
+ul li, ol li {
+  width: 100%;
 }
