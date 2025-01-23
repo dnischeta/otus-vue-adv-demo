@@ -22,5 +22,5 @@ async function enableMocking() {
         return
     }
     const { worker } = await import('./mocks/index.js')
-    return worker.start()
+    return worker.start({ serviceWorker: { url: `${import.meta.env.BASE_URL}/mockServiceWorker.js` } })
 }

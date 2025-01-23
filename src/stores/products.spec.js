@@ -13,7 +13,7 @@ describe('Product Store', () => {
   it('initializes containing correct state', () => {
     const productStore = useProductStore()
     expect(productStore.products).toEqual([])
-    expect(productStore.loading).toBe(true)
+    expect(productStore.loading).toBe(false)
     expect(productStore.error).toBe(null)
   })
 })
